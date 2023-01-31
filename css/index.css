@@ -1,0 +1,18 @@
+.ocultar{
+    visibility: hidden;
+    height: 0%;
+}
+.transicion{
+  visibility: visible;
+  transition-delay: 5s;
+  -webkit-transition: 1s linear;
+  transition: 4s linear;
+}
+
+.backgrou_listas{
+  border-color: #333;
+}
+
+.contenedor-info{
+  text-align: justify;
+}
