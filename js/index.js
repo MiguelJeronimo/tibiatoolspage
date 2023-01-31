@@ -27,7 +27,9 @@ caracteristicas.onclick = (e)=>{
     Caracteristicas()
 }
 
-//Aparecer data en el aviso de privacidad
+/**
+ * Aparecer data en el aviso de privacidad
+ */
 function AvisoPrivacidad() { 
     aviso_data.classList.remove('ocultar');
     aviso_data.classList.add('animate__animated','animate__fadeIn','animate__delay-2s')
@@ -38,6 +40,9 @@ function AvisoPrivacidad() {
     titulo.classList.remove('animate__animated','animate__bounce')
  }
 
+ /**
+  * Aparece la data del home
+  */
  function Home() {
     about_data.classList.remove('ocultar')
     about_data.classList.add('animate__animated','animate__fadeIn','animate__delay-2s')
@@ -51,6 +56,9 @@ function AvisoPrivacidad() {
     caracteristicas_data.classList.remove('animate__animated','animate__fadeIn','animate__delay-2s')
  }
 
+/**
+ * Aparece la data de las caracteristicas
+ */
 function Caracteristicas() { 
     caracteristicas_data.classList.remove('ocultar')
     caracteristicas_data.classList.add('animate__animated','animate__fadeIn','animate__delay-2s')
