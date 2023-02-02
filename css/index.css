@@ -17,6 +17,15 @@ html{
   border-color: #333;
 }
 
+.letras{
+  color: #BA68C8;
+  font-style: bold;
+}
+.letras-descripcion{
+  color: #AB47BC;
+  font-style: bold;
+}
+
 .contenedor-info{
   padding-top: 3em;
   overflow-y: scroll;

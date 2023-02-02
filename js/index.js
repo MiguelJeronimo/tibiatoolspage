@@ -11,6 +11,9 @@ let home = document.getElementById("home")
 let caracteristicas = document.getElementById("caracteristicas")
 let contacto = document.getElementById('contacto')
 let body = document.querySelector('body');
+/**
+ * constante para iterar la data de las tarjetas
+ */
 const bottonCarrucelSlideSize = 11
 window.onload = ()=>{
     Home()
@@ -162,29 +165,66 @@ function Caracteristicas() {
               </div>
             </div>
 */
+
+/**
+ * Esta función imprime la data del la descripción del carrucel con las imagenes dinamicamente
+ * @param {*} bottonCarrucelSlideSize -> numero de botones del slide 
+ */
 function _ImgCarrucelContainer(bottonCarrucelSlideSize) {
     let containerImg = document.getElementById('container-img')
+    const arrayTitles = ['Inicio','Menu','Blessings','Jugadores',
+                          'Guilds','Higscores','House','Experiencia Compartida',
+                          'Stamina','Mundos','Criaturas','Spells']
+    const arrayDescription = ['Ubicación de rashid, noticias, boses del día',
+                              'Contamos con varias funcionalidades',
+                              'Calcula el costo de tus bless :)',
+                              'Revisa el avance de tus jugadores favoritos',
+                              'Busca tu guild',
+                              'Ver a los mas tops',
+                              'Verifica el costo de las casas',
+                              'Calcula el rango de nivel con los que puedes charear :)',
+                              'Revisa cuanto tiempo tarda en recargar tu estamina :)',
+                              'Información de los mundos ',
+                              'Ve las criaturas y su información',
+                              'Consulta las spells de Tibia :)'
+
+                        ]
     const active = true
-    containerImg.appendChild(CarrucelItems(0,active))
+    const incative = false
+    containerImg.appendChild(CarrucelItems(0,active,arrayTitles[0],arrayDescription[0]))
     for (let index = 1; index < bottonCarrucelSlideSize; index++) {
-        containerImg.appendChild(CarrucelItems(index+1))
+        containerImg.appendChild(CarrucelItems(index+1,incative,arrayTitles[index+1], arrayDescription[index+1]))
     }
     
 }
 
-function CarrucelItems(bottonCarrucelSlideSize,active) {
+/**
+ * 
+ * @param {*} bottonCarrucelSlideSize -> numero de botones del slide
+ * @param {*} active -> parametro booleano para determinar si una etiqueta es activa o no
+ * @param {*} tittle -> Titulo de la tarjeta
+ * @param {*} description -> Descripción de la tarjeta
+ * @returns carrucelItem -> Elemento html que contiene la info de la tarjeta
+ */
+function CarrucelItems(bottonCarrucelSlideSize,active,tittle, description) {
     //Items container Carrucel
     let carrucelItem = document.createElement('div')
     if (active) {
         carrucelItem.classList.add('carousel-item','active')
     }
     carrucelItem.classList.add('carousel-item')
+    carrucelItem.setAttribute('data-bs-interval','10000')
     //carrucelItem.className='active'
     carrucelItem.appendChild(imgCarrucel(bottonCarrucelSlideSize))
-    carrucelItem.appendChild(DescriptionImageCarrucel())
+    carrucelItem.appendChild(DescriptionImageCarrucel(tittle,description))
     return carrucelItem
 }
 
+/**
+ * 
+ * @param {*} bottonCarrucelSlideSize -> numero de botones del slide
+ * @returns imgApp -> Elemento imagen ya con la imagen puesta
+ */
 function imgCarrucel(bottonCarrucelSlideSize) {
     //Image of the carrucel
     let imgApp = document.createElement('img')
@@ -195,14 +235,22 @@ function imgCarrucel(bottonCarrucelSlideSize) {
     return imgApp
 }
 
-function DescriptionImageCarrucel() {
+/**
+ * 
+ * @param {*} title -> Titulo de la tarjeta 
+ * @param {*} description -> Descripción de la tarjeta
+ * @returns carrucelCaption -> Division que contiene el titulo y descripción de la tarjeta
+ */
+function DescriptionImageCarrucel(title, description) {
       //Div of the information image carrucel
       let carrucelCaption = document.createElement('div')
       carrucelCaption.classList.add('carousel-caption','d-none','d-md-block')
-      let tituloImage = document.createElement('h5')
-      tituloImage.innerText="Experiencia compartida"
-      let descriptionImage = document.createElement('p')
-      descriptionImage.innerHTML="Calcula el rango de nivel con los que puedes charear :)"
+      let tituloImage = document.createElement('h1')
+      tituloImage.innerText= title
+      tituloImage.classList.add('letras')
+      let descriptionImage = document.createElement('h5')
+      descriptionImage.innerHTML= description
+      descriptionImage.classList.add('letras-descripcion')
       carrucelCaption.appendChild(tituloImage)
       carrucelCaption.appendChild(descriptionImage)
       return carrucelCaption
