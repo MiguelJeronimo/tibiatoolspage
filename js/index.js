@@ -12,7 +12,9 @@ let caracteristicas = document.getElementById("caracteristicas")
 let contacto = document.getElementById('contacto')
 let body = document.querySelector('body');
 body.onload = ()=>{
+    let bottonCarrucelSlideSize = 9
     Home()
+    botonCarrucelSlide(bottonCarrucelSlideSize)
 }
 /*EVENTOS*/
 aviso.onclick = (e)=>{
@@ -119,4 +121,30 @@ function Caracteristicas() {
     setTimeout(()=>{
         tituloContacto.classList.add('animate__animated','animate__bounce')
         },3000)
+ }
+
+ /**
+  * Crear elementos con propiedades del carroucel
+  * @param bottonCarrucelSlideSize -> numero de botones del slide
+  */
+ function botonCarrucelSlide(bottonCarrucelSlideSize) {
+    let buttons_carrucel_slide = document.getElementById('botons_carrucel_slide');
+    let button, buttons
+    button = document.createElement('button')
+    button.type='button'
+    button.className = 'active'
+    button.setAttribute('data-bs-target','#carouselExampleCaptions')
+    button.setAttribute('data-bs-slide-to','0')
+    button.setAttribute('aria-current',true)
+    button.setAttribute('aria-label','Slide 1')
+    buttons_carrucel_slide.appendChild(button)
+    for (let i = 1; i <= bottonCarrucelSlideSize; i++) {
+        buttons = document.createElement('button')
+        buttons.type='button'
+        buttons.setAttribute('data-bs-target','#carouselExampleCaptions')
+        buttons.setAttribute('data-bs-slide-to',i)
+        buttons.setAttribute('aria-current',true)
+        buttons.setAttribute('aria-label',`Slide ${i+1}`)
+        buttons_carrucel_slide.appendChild(buttons)
+    }
  }
