@@ -11,11 +11,13 @@ let home = document.getElementById("home")
 let caracteristicas = document.getElementById("caracteristicas")
 let contacto = document.getElementById('contacto')
 let body = document.querySelector('body');
-body.onload = ()=>{
-    let bottonCarrucelSlideSize = 9
+const bottonCarrucelSlideSize = 11
+window.onload = ()=>{
     Home()
     botonCarrucelSlide(bottonCarrucelSlideSize)
+    _ImgCarrucelContainer(bottonCarrucelSlideSize)
 }
+
 /*EVENTOS*/
 aviso.onclick = (e)=>{
     e.preventDefault()
@@ -148,3 +150,62 @@ function Caracteristicas() {
         buttons_carrucel_slide.appendChild(buttons)
     }
  }
+
+ /* Ejemplo del codigo del carrucel
+            <div class="carousel-item active">
+              <img 
+                src=""
+                 height="500" width="200" class="d-block imagenes-carroucel" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Experiencia compartida</h5>
+                <p>Calcula el rango de nivel con los que puedes charear :)</p>
+              </div>
+            </div>
+*/
+function _ImgCarrucelContainer(bottonCarrucelSlideSize) {
+    let containerImg = document.getElementById('container-img')
+    const active = true
+    containerImg.appendChild(CarrucelItems(0,active))
+    for (let index = 1; index < bottonCarrucelSlideSize; index++) {
+        containerImg.appendChild(CarrucelItems(index+1))
+    }
+    
+}
+
+function CarrucelItems(bottonCarrucelSlideSize,active) {
+    //Items container Carrucel
+    let carrucelItem = document.createElement('div')
+    if (active) {
+        carrucelItem.classList.add('carousel-item','active')
+    }
+    carrucelItem.classList.add('carousel-item')
+    //carrucelItem.className='active'
+    carrucelItem.appendChild(imgCarrucel(bottonCarrucelSlideSize))
+    carrucelItem.appendChild(DescriptionImageCarrucel())
+    return carrucelItem
+}
+
+function imgCarrucel(bottonCarrucelSlideSize) {
+    //Image of the carrucel
+    let imgApp = document.createElement('img')
+    imgApp.height = 500
+    imgApp.width = 230
+    imgApp.src =`img/${bottonCarrucelSlideSize}.png`
+    imgApp.classList.add('d-block','imagenes-carroucel')
+    return imgApp
+}
+
+function DescriptionImageCarrucel() {
+      //Div of the information image carrucel
+      let carrucelCaption = document.createElement('div')
+      carrucelCaption.classList.add('carousel-caption','d-none','d-md-block')
+      let tituloImage = document.createElement('h5')
+      tituloImage.innerText="Experiencia compartida"
+      let descriptionImage = document.createElement('p')
+      descriptionImage.innerHTML="Calcula el rango de nivel con los que puedes charear :)"
+      carrucelCaption.appendChild(tituloImage)
+      carrucelCaption.appendChild(descriptionImage)
+      return carrucelCaption
+}
+
+
